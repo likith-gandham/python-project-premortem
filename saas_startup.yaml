@@ -1,0 +1,41 @@
+# Ledgerly: a seed-stage B2B SaaS company.
+# Every uncertain assumption is a range: {dist: pert, low, mode (most likely), high}.
+company: "Ledgerly"
+description: "AI bookkeeping for freelancers and small agencies. Seed-stage, about 12 months of runway on paper."
+horizon_months: 36
+simulations: 10000
+seed: 7
+survival_target: 0.80
+
+assumptions:
+  starting_cash: 1200000
+  starting_customers: 60
+  arpu:              {dist: pert, low: 120, mode: 149, high: 175}
+  arpu_growth:       0.004
+  gross_margin:      {dist: pert, low: 0.70, mode: 0.80, high: 0.85}
+  cac:               {dist: pert, low: 550, mode: 900, high: 1800}
+  marketing_spend:   40000
+  marketing_growth:  0.03
+  organic_signups:   {dist: pert, low: 10, mode: 30, high: 60}
+  monthly_churn:     {dist: pert, low: 0.015, mode: 0.035, high: 0.07}
+  fixed_costs:       {dist: normal, mean: 85000, sd: 7000, low: 60000}
+  fixed_cost_growth: 0.012
+  demand_volatility: 0.20
+
+fundraise:
+  month: 16
+  amount: 4000000
+  mrr_milestone: 120000
+  close_probability: 0.65
+
+levers:
+  - name: "Raise prices 15% (churn +10%)"
+    changes: {arpu: {scale: 1.15}, monthly_churn: {scale: 1.10}}
+  - name: "Push annual plans (churn -25%)"
+    changes: {monthly_churn: {scale: 0.75}}
+  - name: "Cut marketing 30%"
+    changes: {marketing_spend: {scale: 0.70}}
+  - name: "Delay two engineering hires"
+    changes: {fixed_costs: {add: -18000}}
+  - name: "Double down on marketing (+50%)"
+    changes: {marketing_spend: {scale: 1.50}}

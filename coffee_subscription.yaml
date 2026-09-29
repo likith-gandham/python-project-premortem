@@ -1,0 +1,37 @@
+# Grind Club: a bootstrapped direct-to-consumer subscription business.
+company: "Grind Club"
+description: "Specialty coffee subscription shipped fresh every two weeks. Bootstrapped with a small bank loan in view."
+horizon_months: 30
+simulations: 10000
+seed: 11
+survival_target: 0.80
+
+assumptions:
+  starting_cash: 270000
+  starting_customers: 400
+  arpu:              {dist: pert, low: 28, mode: 34, high: 38}
+  gross_margin:      {dist: pert, low: 0.34, mode: 0.42, high: 0.48}
+  cac:               {dist: pert, low: 35, mode: 65, high: 130}
+  marketing_spend:   22000
+  marketing_growth:  0.02
+  organic_signups:   {dist: pert, low: 40, mode: 120, high: 250}
+  monthly_churn:     {dist: pert, low: 0.07, mode: 0.10, high: 0.16}
+  fixed_costs:       {dist: pert, low: 24000, mode: 28000, high: 34000}
+  fixed_cost_growth: 0.008
+  demand_volatility: 0.25
+
+fundraise:
+  month: 12
+  amount: 250000
+  mrr_milestone: 70000
+  close_probability: 0.85
+
+levers:
+  - name: "3-month prepaid bundles"
+    changes: {monthly_churn: {scale: 0.70}, arpu: {scale: 0.95}}
+  - name: "Renegotiate roaster (+5 pts margin)"
+    changes: {gross_margin: {add: 0.05}}
+  - name: "Cut paid social 40%"
+    changes: {marketing_spend: {scale: 0.60}}
+  - name: "Referral program (organic +50%)"
+    changes: {organic_signups: {scale: 1.50}}
